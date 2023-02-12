@@ -1,7 +1,7 @@
 import { useSphere } from '@react-three/cannon'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
-import { Vector3 } from 'three'
+import { Mesh, Vector3 } from 'three'
 import { userKeyboard } from '../hooks/useKeyboard'
 
 export function Player (): JSX.Element {
@@ -20,7 +20,7 @@ export function Player (): JSX.Element {
   } = actions
 
   const { camera } = useThree()
-  const [ref, api] = useSphere(() => ({
+  const [ref, api] = useSphere<Mesh>(() => ({
     mass: 1,
     type: 'Dynamic',
     position: [1, 3, 1]

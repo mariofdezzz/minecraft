@@ -1,11 +1,12 @@
 import { useBox } from '@react-three/cannon'
+import { Mesh } from 'three'
 import { Cube as CubeProps } from '../store/cubes'
 import { Textures } from '../utils/textures'
 
 export function Cube ({ position }: CubeProps): JSX.Element {
   const [x, y, z] = position
 
-  const [ref] = useBox(() => ({
+  const [ref] = useBox<Mesh>(() => ({
     type: 'Static',
     position: [x + 0.5, y + 0.5, z + 0.5]
   }))

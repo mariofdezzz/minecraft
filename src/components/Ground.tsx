@@ -1,11 +1,12 @@
 import { usePlane } from '@react-three/cannon'
+import { Mesh } from 'three'
 import { Textures } from '../utils/textures'
 
 export function Ground (): JSX.Element {
   const SIZE = 100
   const DIMENSIONS = [SIZE, SIZE] as const
 
-  const [ref] = usePlane(() => ({
+  const [ref] = usePlane<Mesh>(() => ({
     rotation: [-Math.PI / 2, 0, 0],
     position: [0, 0, 0]
   }))

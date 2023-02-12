@@ -26,7 +26,7 @@ export function userKeyboard (): KeyboardState {
   useEffect(() => {
     function handleKey (value: boolean) {
       return ({ code }: KeyboardEvent) => {
-        const action = KEYBOARD_MAPPINGS[code] as Action | undefined
+        const action = KEYBOARD_MAPPINGS[code as keyof typeof KEYBOARD_MAPPINGS] as Action | undefined
 
         if (
           action !== undefined
