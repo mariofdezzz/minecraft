@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { CubeStore, useCubeStore } from '../store/cubes'
 import { Cube } from './Cube'
 
@@ -8,8 +7,8 @@ export function Cubes (): JSX.Element {
   return (
     <>
       {
-        cubes.map(({ position }) => (
-          <Cube key={`${position.join('-')}`} position={position} />
+        cubes.map((block) => (
+          <Cube key={`${block.position.join('-')}`} block={block} />
         ))
       }
     </>
