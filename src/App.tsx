@@ -1,7 +1,7 @@
 import { Physics } from '@react-three/cannon'
 import { Sky } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Cubes } from './components/Cubes'
+import { Blocks } from './components/Blocks'
 import { FPV as Fpv } from './components/FPV'
 import { Ground } from './components/Ground'
 import { Player } from './components/Player'
@@ -15,7 +15,7 @@ export default function App (): JSX.Element {
       <axesHelper args={[5]} />
 
       <Physics>
-        <Cubes />
+        <Blocks />
         <Player />
         {/* <Ground /> */}
       </Physics>

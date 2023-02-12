@@ -1,13 +1,13 @@
 import { useBox } from '@react-three/cannon'
 import { Mesh } from 'three'
-import { Block } from '../models/Block'
+import { Block as BlockType } from '../models/Block'
 import { Textures } from '../utils/textures'
 
-export interface CubeProps {
-  block: Block
+export interface BlockProps {
+  block: BlockType
 }
 
-export function Cube ({ block: { position } }: CubeProps): JSX.Element {
+export function Block ({ block: { position } }: BlockProps): JSX.Element {
   const [x, y, z] = position
 
   const [ref] = useBox<Mesh>(() => ({
