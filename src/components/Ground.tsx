@@ -10,7 +10,7 @@ export function Ground (): JSX.Element {
     position: [0, -0.5, 0]
   }))
 
-  const texture = Textures.grass.top.clone()
+  const texture = Textures.grass[2].clone()
   texture.repeat.set(...DIMENSIONS)
 
   return (
