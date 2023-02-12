@@ -1,6 +1,6 @@
 import { usePlane } from '@react-three/cannon'
 import { Mesh } from 'three'
-import { Textures } from '../utils/textures'
+import { BlockTypes } from '../models/BlockTypes'
 
 export function Ground (): JSX.Element {
   const SIZE = 100
@@ -11,7 +11,7 @@ export function Ground (): JSX.Element {
     position: [0, 0, 0]
   }))
 
-  const texture = Textures.grass[2].clone()
+  const texture = BlockTypes.Grass.textures[2].clone()
   texture.repeat.set(...DIMENSIONS)
 
   return (

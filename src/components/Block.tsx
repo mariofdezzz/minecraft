@@ -1,13 +1,11 @@
 import { useBox } from '@react-three/cannon'
 import { Mesh } from 'three'
 import { Block as BlockType } from '../models/Block'
-import { Textures } from '../utils/textures'
-
 export interface BlockProps {
   block: BlockType
 }
 
-export function Block ({ block: { position } }: BlockProps): JSX.Element {
+export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
   const [x, y, z] = position
 
   const [ref] = useBox<Mesh>(() => ({
@@ -15,13 +13,13 @@ export function Block ({ block: { position } }: BlockProps): JSX.Element {
     position: [x + 0.5, y + 0.5, z + 0.5]
   }))
 
-  const textures = Textures.grass
+  const textures = type.textures
 
   const materials = textures.map((texture, index) => (
     <meshStandardMaterial
       key={index}
       map={texture}
-      color={index === 2 ? '#B0E876' : '#FFFFFF'}
+      color={type.colors?.[index]}
       attach={`material-${index}`}
     />
   ))
