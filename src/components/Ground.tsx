@@ -7,7 +7,7 @@ export function Ground (): JSX.Element {
 
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
-    position: [0, -0.5, 0]
+    position: [0, 0, 0]
   }))
 
   const texture = Textures.grass[2].clone()
