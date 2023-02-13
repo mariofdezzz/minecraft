@@ -31,6 +31,14 @@ for (let i = 0; i < 4; i++) {
 export const useBlockStore = create((set): BlockStore => ({
   blocks: [
     ...blocks,
-    ...stairs
+    ...stairs,
+    {
+      position: [-2, 0, -4],
+      type: BlockTypes.OakLog
+    },
+    {
+      position: [-4, 0, -4],
+      type: BlockTypes.OakPlanks
+    }
   ]
 }))

@@ -1,5 +1,5 @@
 import { BlockType } from './BlockType'
-import { dirt, getBlockTextures, sideGrass, topGrass } from './Textures'
+import { dirt, getBlockTextures, oakPlanks, oakSideLog, oakTopLog, sideGrass, topGrass } from './Textures'
 
 const Grass: BlockType = {
   textures: getBlockTextures(topGrass, sideGrass, dirt),
@@ -17,7 +17,17 @@ const Dirt: BlockType = {
   textures: getBlockTextures(dirt, dirt, dirt)
 }
 
+const OakLog: BlockType = {
+  textures: getBlockTextures(oakTopLog, oakSideLog, oakTopLog)
+}
+
+const OakPlanks: BlockType = {
+  textures: getBlockTextures(oakPlanks, oakPlanks, oakPlanks)
+}
+
 export const BlockTypes = {
   Grass,
-  Dirt
+  Dirt,
+  OakLog,
+  OakPlanks
 } as const
