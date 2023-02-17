@@ -5,20 +5,25 @@ import { Blocks } from './components/Blocks'
 import { FPV as Fpv } from './components/FPV'
 import { Ground } from './components/Ground'
 import { Player } from './components/Player'
+import { UI as Ui } from './components/UI'
 
 export default function App (): JSX.Element {
   return (
-    <Canvas>
-      <Sky sunPosition={[100, 100, 20]} />
-      <ambientLight intensity={0.5} />
-      <Fpv />
-      <axesHelper args={[5]} />
+    <>
+      <Canvas>
+        <Sky sunPosition={[100, 100, 20]} />
+        <ambientLight intensity={0.5} />
+        <Fpv />
+        <axesHelper args={[5]} />
 
-      <Physics>
-        <Blocks />
-        <Player />
-        {/* <Ground /> */}
-      </Physics>
-    </Canvas>
+        <Physics>
+          <Blocks />
+          <Player />
+          {/* <Ground /> */}
+        </Physics>
+      </Canvas>
+      <Ui />
+    </>
+
   )
 }
