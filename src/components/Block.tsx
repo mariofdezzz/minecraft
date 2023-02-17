@@ -1,5 +1,7 @@
 import { useBox } from '@react-three/cannon'
+import { Edges } from '@react-three/drei'
 import { Mesh } from 'three'
+import { useMeshHovered } from '../composables/useMeshHovered'
 import { Block as BlockType } from '../models/Block'
 export interface BlockProps {
   block: BlockType
@@ -12,6 +14,7 @@ export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
     type: 'Static',
     position: [x + 0.5, y + 0.5, z + 0.5]
   }))
+  const { isHovered, onPointerMove, onPointerOut } = useMeshHovered()
 
   const textures = type.textures
 
@@ -25,9 +28,14 @@ export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
   ))
 
   return (
-    <mesh ref={ref}>
+    <mesh
+      onPointerMove={onPointerMove}
+      onPointerOut={onPointerOut}
+      ref={ref}
+    >
       <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
       {materials}
+      <Edges visible={isHovered} color='white' />
     </mesh>
   )
 }
