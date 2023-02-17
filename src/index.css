@@ -11,3 +11,8 @@ body,
   user-select: none;
   overflow: hidden;
 }
+
+.stats {
+  top: .5rem !important;
+  left: .5rem !important;
+}
