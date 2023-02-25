@@ -1,13 +1,16 @@
 import { useBox } from '@react-three/cannon'
 import { Edges } from '@react-three/drei'
-import { Mesh } from 'three'
+import { AdditiveBlending, Mesh } from 'three'
+import { useBlockDestroy } from '../composables/useBlockDestroy'
 import { useMeshHovered } from '../composables/useMeshHovered'
 import { Block as BlockType } from '../models/Block'
+
 export interface BlockProps {
   block: BlockType
 }
 
-export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
+export function Block ({ block }: BlockProps): JSX.Element {
+  const { position, type } = block
   const [x, y, z] = position
 
   const [ref] = useBox<Mesh>(() => ({
@@ -15,6 +18,8 @@ export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
     position: [x + 0.5, y + 0.5, z + 0.5]
   }))
   const { isHovered, onPointerMove, onPointerOut } = useMeshHovered()
+  const { texture: breakingTexture, onPointerDown, onPointerUp } = useBlockDestroy(() => {
+  })
 
   const textures = type.textures
 
@@ -29,6 +34,8 @@ export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
 
   return (
     <mesh
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
       ref={ref}
@@ -36,6 +43,15 @@ export function Block ({ block: { position, type } }: BlockProps): JSX.Element {
       <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
       {materials}
       <Edges visible={isHovered} color='white' />
+      {
+        breakingTexture !== null
+          ? <meshStandardMaterial
+              map={breakingTexture}
+              blending={AdditiveBlending}
+              attach='material'
+            />
+          : null
+      }
     </mesh>
   )
 }

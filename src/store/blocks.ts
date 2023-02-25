@@ -4,6 +4,7 @@ import { BlockTypes } from '../models/BlockTypes'
 
 export interface BlockStore {
   blocks: Block[]
+  removeBlock: (block: Block) => void
 }
 
 const blocks: Block[] = []
@@ -28,7 +29,7 @@ for (let i = 0; i < 4; i++) {
   })
 }
 
-export const useBlockStore = create((set): BlockStore => ({
+export const useBlockStore = create<BlockStore>((set) => ({
   blocks: [
     ...blocks,
     ...stairs,
@@ -40,5 +41,10 @@ export const useBlockStore = create((set): BlockStore => ({
       position: [-4, 0, -4],
       type: BlockTypes.OakPlanks
     }
-  ]
+  ],
+  removeBlock: (block: Block) => {
+    set((state) => ({
+      blocks: state.blocks.filter((b) => b !== block)
+    }))
+  }
 }))

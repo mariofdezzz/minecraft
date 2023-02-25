@@ -1,8 +1,8 @@
-import { BlockStore, useBlockStore } from '../store/blocks'
+import { useBlockStore } from '../store/blocks'
 import { Block } from './Block'
 
 export function Blocks (): JSX.Element {
-  const [blocks] = useBlockStore((state) => [(state as BlockStore).blocks])
+  const [blocks] = useBlockStore((state) => [state.blocks])
 
   return (
     <>
